@@ -1,5 +1,5 @@
 <?php        
-include_once $_SERVER['DOCUMENT_ROOT'].'/matExam/config.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/nfnLabs/config.php';
 $conn=mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 if(!$conn){
 
