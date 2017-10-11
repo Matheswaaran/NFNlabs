@@ -39,6 +39,8 @@
             <th>Description</th>
             <th>Level</th>
             <th>Time</th>
+            <th>pm</th>
+            <th>nm</th>
             <th>Conducted By</th>
 
         </tr>
@@ -51,9 +53,11 @@
                 <td>{{ x.description }}</td>
                 <td>{{ x.level }}</td>
                 <td>{{ x.quiz_time }} mins</td>
+                <td>{{ x.positive_mark }}</td>
+                <td>{{ x.negative_mark }}</td>
                 <td>{{ x.cond_by }}</td>
                 <td>
-                    <div><a><button ng-click="gotoquiz(x.name,x.sno,x.hours,x.mins);" type="button" class="btn btn-success">Participate</button></a></div></td>
+                    <div><a><button ng-click="gotoquiz(x.name,x.sno,x.hours,x.mins,x.positive_mark,x.negative_mark);" type="button" class="btn btn-success">Participate</button></a></div></td>
             </tr>
         </a>
        </div>

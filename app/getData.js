@@ -15,17 +15,16 @@ app.controller('getdata',function($rootScope,$scope,$http,myService,$location,$i
 
   }
   $scope.reload();
-	
- // console.log($rootScope.name);
-	$scope.gotoquiz = function(quizname,q_id,hours,mins){
-    console.log(mins+""+hours+""+quizname);
-	//	myService.set(quizname,quiztab,hours,mins);
+
+	$scope.gotoquiz = function(quizname,q_id,hours,mins,positive_mark,negative_mark){
     $rootScope.quiz_name=quizname;
-    console.log(q_id)
     $rootScope.q_id=q_id;
     $rootScope.quiz_time_hours=hours;
     $rootScope.quiz_time_mins=mins;
-   // console.log($rootScope.res_tab);
+    $rootScope.positive_mark = positive_mark;
+    $rootScope.negative_mark = negative_mark;
+
+    // console.log($rootScope.negative_mark);
 		$location.path('/quiz_page');
 	}
 });

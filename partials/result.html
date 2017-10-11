@@ -28,14 +28,14 @@
     <br>  
 <div ng-controller="results" class="container-fluid jumbotron">
     <h2>Score Report and Feedback</h2>
-    Scoring Date/Time : <button class="btn btn-info"></button><br><br>
+    Scoring Date/Time : <button class="btn btn-info">{{ currentDate | date:'dd-MMMM-yyyy' }} {{ currentDate | date:'HH:mm' }}</button><br><br>
     Duration : <button class="btn btn-info">{{ duration }} Mins</button><br><br>
     <h2>Exam Results</h2>
-    Negative Marking Factor : <button class="btn btn-danger"></button><br><br>
-    Attempted  Wrong Weitage of Questions : <button class="btn btn-danger"></button><br><br>
+    Negative Marking Factor : <button class="btn btn-danger">{{ negative_mark }}</button><br><br>
+    Attempted  Wrong Weightage of Questions : <button class="btn btn-danger"></button><br><br>
     No .of Questions correct / (Unattempted + Wrong) Ratio : <button class="btn btn-success"></button> : <button class="btn btn-danger"></button><br><br>
     Marks Correct / (Unattempted + Wrong) Ratio : <button class="btn btn-success"></button> : <button class="btn btn-danger"></button><br><br>
-    Percentage Score : <button class="btn btn-info">{{ marks }}</button><br><br><br><br>
+    Percentage Score : <button class="btn btn-info">{{ percentage }}%</button><br><br><br><br>
     Total Time taken including Stoppage and Resume Time = <button class="btn btn-info"></button>
 </div>
 <br>

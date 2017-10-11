@@ -18,6 +18,8 @@ if(!$conn){
 				$quiz["level"] = $row["level"];
 				$quiz["description"]=$row["descr"];
 				$quiz["cond_by"]=$row["conducted_by"];
+				$quiz["negative_mark"] = $row["negative_mark"];
+				$quiz["positive_mark"] = $row["positive_mark"];
 				$quiz["hours"]=$row["hours"];
 				$quiz["mins"]=$row["mins"];
                 $data[]=$quiz;

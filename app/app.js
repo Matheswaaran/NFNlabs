@@ -62,6 +62,8 @@ app.config(['$routeProvider',
                     $rootScope.quiz_time_hours;
                     $rootScope.quiz_time_mins;
                     $rootScope.result;
+                    $rootScope.positive_mark;
+                    $rootScope.negative_mark;
                     $location.path(nextUrl);
                 } else {
                     var nextUrl = next.$$route.originalPath;

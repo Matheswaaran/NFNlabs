@@ -10,18 +10,15 @@ app.controller('getQuizData',function ($rootScope,$scope, $window ,toaster,$root
 		console.log("empty "+$scope.q_id);
 	}else{
     $http.get("api/getdata/getquizques.php?q_id="+$scope.q_id).success(function (response) {
-			/*After Successfully fetch the data from JSON file assigning these data to $scope object variable*/
-			//$scope.questions = response.records;
 			$scope.setGlobal(response);
 			console.log("response got"+response);
-
 		});
 
 
   console.log($scope.user.name+" user got");
 
   $scope.questions=[];
-  $scope.setGlobal=function(response){
+  $scope.setGlobal=function(response){5
     $scope.questions=response.records;
     console.log($scope.questions);
     $scope.quesarr=[$scope.questions];
@@ -34,10 +31,10 @@ app.controller('getQuizData',function ($rootScope,$scope, $window ,toaster,$root
       $scope.marks = 0;
       console.log("submit called "+$scope.results.length+" test");
       for (var i = 0; i < $scope.results.length; i++) {
-       console.log(angular.equals($scope.questions[i].ans,$scope.results[i]));
         if(angular.equals($scope.questions[i].result,$scope.results[i])){
-          console.log($scope.results[i]);          
-          $scope.marks=$scope.marks+parseInt($scope.questions[i].marks);
+          $scope.marks=$scope.marks+parseInt($rootScope.positive_mark);
+        }else{
+          $scope.marks=$scope.marks-parseInt($rootScope.negative_mark);
         }
       }
       console.log($scope.marks);

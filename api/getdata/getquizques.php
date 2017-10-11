@@ -22,7 +22,7 @@ echo "error in connection";
 				$quiz_ques["op_c"]=$row["op_c"];
 				$quiz_ques["op_d"]=$row["op_d"];
 				$quiz_ques["result"]=$row["result"];
-				$quiz_ques["marks"]=$row["marks"];
+				// $quiz_ques["marks"]=$row["marks"];
                 $data[]=$quiz_ques;
 			}
 			$final=array();

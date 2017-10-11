@@ -1,7 +1,8 @@
 
 app.controller('results',function($scope,$location,myService,$rootScope,$interval){
-	$scope.marks=$rootScope.result;
+	$scope.percentage=$rootScope.result;
 	$scope.duration = parseInt($rootScope.quiz_time_hours*60) + parseInt($rootScope.quiz_time_mins);
+	$scope.currentDate = new Date();
 	// $scope.time1=60;
 	// var timer=$interval(function () {
 	// 	$scope.time1--;
@@ -10,4 +11,6 @@ app.controller('results',function($scope,$location,myService,$rootScope,$interva
 	// 		$location.path('/dashboard');
 	// 	}
 	// }, 1000);
+
+	$scope.negative_mark = $rootScope.negative_mark;
 });
