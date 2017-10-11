@@ -1,10 +1,11 @@
 <div class="breadcrumbs" id="breadcrumbs">
-    <ul class="breadcrumb">
+    <ul class="breadcrumb" style="height:45px">
         <li>
             <i class="ace-icon fa fa-home home-icon"></i>
             <a href="#">Home</a>
         </li>
         <li class="active">Dashboard</li>
+        <li class="pull-right"><button ng-click="logout();" style="height:30px;text-align:center" class="btn btn-danger">Logout</button></li>
 
     </ul>
 </div>
@@ -19,8 +20,6 @@
                         <h3 class="header blue lighter bigger pull-left">
                             <i class="icon-coffee green">Welcome  {{name}} </i>
                         </h3>
-                        <button ng-click="logout();" type="button" class="btn btn-info pull-right btn-lg">Logout
-                         </button>
                     </div>
                 </div>
             </div>
@@ -46,25 +45,20 @@
        </thead> 
        <div > 
         <a href="#/quiz_page">
-        <tr style="padding: 155px;" ng-repeat="x in members"  >
-            <td>{{ x.sno }}</td>
-            <td>{{ x.name }}</td>
-            <td>{{ x.description }}</td>
-            <td>{{ x.level }}</td>
-            <td>{{ x.quiz_time }}</td>
-            <td>{{ x.cond_by }}</td>
-            <td>
-                <div><a><button ng-click="gotoquiz(x.name,x.sno,x.hours,x.mins);" type="button" class="btn btn-success">Participate</button></a></div></td>
-
-        </tr>
-    </a>
+            <tr style="padding: 155px;" ng-repeat="x in members"  >
+                <td>{{ x.sno }}</td>
+                <td>{{ x.name }}</td>
+                <td>{{ x.description }}</td>
+                <td>{{ x.level }}</td>
+                <td>{{ x.quiz_time }} mins</td>
+                <td>{{ x.cond_by }}</td>
+                <td>
+                    <div><a><button ng-click="gotoquiz(x.name,x.sno,x.hours,x.mins);" type="button" class="btn btn-success">Participate</button></a></div></td>
+            </tr>
+        </a>
        </div>
     </table>
 </div>
 <br>
-
-
-  
 </div>
-
 <!-- /.page-content -->

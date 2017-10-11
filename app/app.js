@@ -59,13 +59,9 @@ app.config(['$routeProvider',
                     $rootScope.quiz_name;
                     $rootScope.q_id;
                     $rootScope.quiz_tab;
-                    $rootScope.quiz_time;
                     $rootScope.quiz_time_hours;
                     $rootScope.quiz_time_mins;
                     $rootScope.result;
-                   // quizname,quiztab,hours,mins
-                    $rootScope.res_tab;
-                   // myService.set_user(results);
                     $location.path(nextUrl);
                 } else {
                     var nextUrl = next.$$route.originalPath;

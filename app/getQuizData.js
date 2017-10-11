@@ -4,14 +4,12 @@ app.controller('getQuizData',function ($rootScope,$scope, $window ,toaster,$root
   $scope.user=$rootScope.user_details;
   $scope.hour=$rootScope.quiz_time_hours;
   $scope.minutes=$rootScope.quiz_time_mins;
-  // $scope.quiz_time=$rootScope.quiz_time;
   $scope.email=$rootScope.email;
- // console.log($rootScope.email);
 
 	if($scope.Quizname==null){
 		console.log("empty "+$scope.q_id);
 	}else{
-    $http.get("api/getdata/Getquizques.php?q_id="+$scope.q_id).success(function (response) {
+    $http.get("api/getdata/getquizques.php?q_id="+$scope.q_id).success(function (response) {
 			/*After Successfully fetch the data from JSON file assigning these data to $scope object variable*/
 			//$scope.questions = response.records;
 			$scope.setGlobal(response);
@@ -33,24 +31,21 @@ app.controller('getQuizData',function ($rootScope,$scope, $window ,toaster,$root
   $scope.pos=$scope.index-1;
   $scope.results=[];
   $scope.submit=function(){
-        $scope.marks = 0;
-      
-        console.log("submit called "+$scope.results.length+" test");
-        //$scope.i=0;
+      $scope.marks = 0;
+      console.log("submit called "+$scope.results.length+" test");
       for (var i = 0; i < $scope.results.length; i++) {
-         console.log(angular.equals($scope.questions[i].ans,$scope.results[i]));
-
-          if(angular.equals($scope.questions[i].result,$scope.results[i])){
-            console.log($scope.results[i]);          
-            $scope.marks=$scope.marks+parseInt($scope.questions[i].marks);
-          }
+       console.log(angular.equals($scope.questions[i].ans,$scope.results[i]));
+        if(angular.equals($scope.questions[i].result,$scope.results[i])){
+          console.log($scope.results[i]);          
+          $scope.marks=$scope.marks+parseInt($scope.questions[i].marks);
+        }
       }
       console.log($scope.marks);
       var attended = $scope.results.length;
       var unattended = $scope.questions.length - $scope.results.length;
       console.log(unattended);
       $rootScope.result=$scope.marks;
-      $scope.result_data={username:$rootScope.name,marks:$scope.marks,result_tab:$rootScope.res_tab,email:$rootScope.email,regno:$rootScope.regno};
+      $scope.result_data={username:$rootScope.name,q_id:$rootScope.q_id,u_id:$rootScope.uid,marks:$scope.marks,atten_ques:attended,unAtten_ques:unattended};
       $http({
         method : "POST",
         url : "api/getdata/update_result.php",

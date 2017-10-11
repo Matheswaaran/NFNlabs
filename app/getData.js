@@ -9,7 +9,7 @@ app.controller('getdata',function($rootScope,$scope,$http,myService,$location,$i
       //$scope.questions = response.records;
         $scope.members=response.records;
         for (var i = 0; i < $scope.members.length; i++) {
-          $scope.members[i].quiz_time = ($scope.members[i].hours*60)+$scope.members[i].mins;
+          $scope.members[i].quiz_time = parseInt($scope.members[i].hours*60) + parseInt($scope.members[i].mins);
       }
       });
 
@@ -25,8 +25,6 @@ app.controller('getdata',function($rootScope,$scope,$http,myService,$location,$i
     $rootScope.q_id=q_id;
     $rootScope.quiz_time_hours=hours;
     $rootScope.quiz_time_mins=mins;
-    $rootScope.quiz_time=(hours*60)+mins;
-    console.log(quiz_time);
    // console.log($rootScope.res_tab);
 		$location.path('/quiz_page');
 	}
