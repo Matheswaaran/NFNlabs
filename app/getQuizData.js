@@ -5,6 +5,7 @@ app.controller('getQuizData',function ($rootScope,$scope, $window ,toaster,$root
   $scope.hour=$rootScope.quiz_time_hours;
   $scope.minutes=$rootScope.quiz_time_mins;
   $scope.email=$rootScope.email;
+  $scope.index = 1;
 
 	if($scope.Quizname==null){
 		console.log("empty "+$scope.q_id);
@@ -18,7 +19,7 @@ app.controller('getQuizData',function ($rootScope,$scope, $window ,toaster,$root
   console.log($scope.user.name+" user got");
 
   $scope.questions=[];
-  $scope.setGlobal=function(response){5
+  $scope.setGlobal=function(response){
     $scope.questions=response.records;
     console.log($scope.questions);
     $scope.quesarr=[$scope.questions];
@@ -27,22 +28,43 @@ app.controller('getQuizData',function ($rootScope,$scope, $window ,toaster,$root
   $scope.index=1;
   $scope.pos=$scope.index-1;
   $scope.results=[];
+  $scope.usedSec = 0;
+  $scope.correctQues = 0;
+  $scope.wrongQues = 0;
+
+  $scope.goToQues = function(a){
+    console.log(a);
+    $scope.index = parseInt(a);
+  }
+
   $scope.submit=function(){
       $scope.marks = 0;
       console.log("submit called "+$scope.results.length+" test");
       for (var i = 0; i < $scope.results.length; i++) {
         if(angular.equals($scope.questions[i].result,$scope.results[i])){
           $scope.marks=$scope.marks+parseInt($rootScope.positive_mark);
+          $scope.correctQues = parseInt($scope.correctQues) + 1;
         }else{
           $scope.marks=$scope.marks-parseInt($rootScope.negative_mark);
+          $scope.wrongQues = parseInt($scope.wrongQues) + 1;
         }
       }
-      console.log($scope.marks);
       var attended = $scope.results.length;
       var unattended = $scope.questions.length - $scope.results.length;
-      console.log(unattended);
       $rootScope.result=$scope.marks;
-      $scope.result_data={username:$rootScope.name,q_id:$rootScope.q_id,u_id:$rootScope.uid,marks:$scope.marks,atten_ques:attended,unAtten_ques:unattended};
+      $rootScope.totalQuestions = $scope.questions.length;
+
+      $scope.full_timer = (parseInt($rootScope.quiz_time_hours)*3600) + (parseInt($rootScope.quiz_time_mins)*60)
+      $scope.completed_timer = (parseInt($scope.hour)*3600) + (parseInt($scope.minutes)*60) + parseInt($scope.seconds);
+      // $scope.usedSec = parseInt($scope.full_timer) - parseInt($scope.completed_timer);
+      $scope.usedSec = parseInt($scope.full_timer) - parseInt($scope.completed_timer);
+      $rootScope.used_sec = $scope.usedSec;
+      $rootScope.correctQuestions = $scope.correctQues;
+      $rootScope.wrongQuestions = $scope.wrongQues;
+      $rootScope.unattendedQuestions = unattended;
+      $rootScope.attendedQuestions = attended;
+
+      $scope.result_data={username:$rootScope.name,q_id:$rootScope.q_id,u_id:$rootScope.uid,marks:$scope.marks,atten_ques:attended,unAtten_ques:unattended,usedSec:$scope.usedSec,correct_ques:$scope.correctQues,wrong_ques:$scope.wrongQues};
       $http({
         method : "POST",
         url : "api/getdata/update_result.php",
@@ -63,7 +85,6 @@ app.controller('getQuizData',function ($rootScope,$scope, $window ,toaster,$root
             toaster.pop(response.status, "", response.message, 1000, 'trustedHtml');
                // $location.path('/quizques');
       });
-
       $location.path('/result');
     }
 //timer starts

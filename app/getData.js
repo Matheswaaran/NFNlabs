@@ -1,6 +1,6 @@
 
 /* global $ */
-app.controller('getdata',function($rootScope,$scope,$http,myService,$location,$interval){
+app.controller('getdata',function($rootScope,$scope,$http,myService,$location,$interval,toaster){
   $scope.reload=function(){
     console.log("clicked");
      // $location.path('/dashboard');
@@ -24,7 +24,17 @@ app.controller('getdata',function($rootScope,$scope,$http,myService,$location,$i
     $rootScope.positive_mark = positive_mark;
     $rootScope.negative_mark = negative_mark;
 
-    // console.log($rootScope.negative_mark);
-		$location.path('/quiz_page');
+    $http.get("api/getdata/checkResult.php?u_id="+$rootScope.uid).success(function (response) {
+      // $scope.setGlobal(response);
+      if (response.status == "success") {
+        $rootScope.examFlag = false;
+        $location.path('quiz_page');
+        toaster.pop(response.status, "", response.message, 1000, 'trustedHtml');
+      }else{
+        toaster.pop(response.status, "", response.message, 1000, 'trustedHtml');
+        $rootScope.examFlag = true;
+        $location.path('result');
+      }
+    });
 	}
 });

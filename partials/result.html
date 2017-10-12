@@ -6,7 +6,7 @@
         </li>
         <li><a href="#/dashboard">Dashboard</a></li>
         <li class="active">Results</li>
-        <li class="pull-right"><button ng-click="logout();" style="height:30px;text-align:center" class="btn btn-danger">Logout</button></li>
+        <li class="pull-right"><button ng-click="logout();" style="text-align:center" class="btn btn-danger">Logout</button></li>
     </ul>
 </div>
 <br>
@@ -32,11 +32,11 @@
     Duration : <button class="btn btn-info">{{ duration }} Mins</button><br><br>
     <h2>Exam Results</h2>
     Negative Marking Factor : <button class="btn btn-danger">{{ negative_mark }}</button><br><br>
-    Attempted  Wrong Weightage of Questions : <button class="btn btn-danger"></button><br><br>
-    No .of Questions correct / (Unattempted + Wrong) Ratio : <button class="btn btn-success"></button> : <button class="btn btn-danger"></button><br><br>
-    Marks Correct / (Unattempted + Wrong) Ratio : <button class="btn btn-success"></button> : <button class="btn btn-danger"></button><br><br>
+    Attempted  Wrong Weightage of Questions : <button class="btn btn-danger">{{ wrongQues }}</button><br><br>
+    No .of Questions correct / (Unattempted + Wrong) Ratio : <button class="btn btn-success">{{ correctQues }}</button> : <button class="btn btn-danger">{{ un_Wrong }}</button><br><br>
+    Marks Correct / (Unattempted + Wrong) Ratio : <button class="btn btn-success">{{ cq_marks }}</button> : <button class="btn btn-danger">{{ uw_marks }}</button><br><br>
     Percentage Score : <button class="btn btn-info">{{ percentage }}%</button><br><br><br><br>
-    Total Time taken including Stoppage and Resume Time = <button class="btn btn-info"></button>
+    Total Time taken including Stoppage and Resume Time = <button class="btn btn-info">{{ usedSec }} Seconds</button>
 </div>
 <br>
 

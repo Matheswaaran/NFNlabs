@@ -6,6 +6,9 @@ $hours_rem = $_POST["hours_rem"];
 $mins_rem = $_POST["mins_rem"];
 $atten_ques = $_POST["atten_ques"];
 $unAtten_ques = $_POST["unAtten_ques"];
+$usedSec = $_POST["usedSec"];
+$correct_ques = $_POST["correct_ques"];
+$wrong_ques = $_POST["wrong_ques"];
 
 $response=array();
 include_once $_SERVER['DOCUMENT_ROOT'].'/nfnLabs/config.php';
@@ -16,7 +19,7 @@ if(!$conn){
 	$response['status']="error";
 	$response['message']="error in connection";
 }else{
-	$query="insert into quiz_results VALUES (null,'$u_id','$q_id','$atten_ques','$unAtten_ques',$marks,null)";
+	$query="insert into quiz_results VALUES (null,'$u_id','$q_id','$atten_ques','$unAtten_ques','$correct_ques','$wrong_ques','$marks','$usedSec',null)";
 	$result=mysqli_query($conn,$query);
 	if($result){
 		$response['status']="success";

@@ -62,8 +62,15 @@ app.config(['$routeProvider',
                     $rootScope.quiz_time_hours;
                     $rootScope.quiz_time_mins;
                     $rootScope.result;
+                    $rootScope.totalQuestions;
+                    $rootScope.correctQuestions;
+                    $rootScope.wrongQuestions;
+                    $rootScope.attendedQuestions;
+                    $rootScope.unattendedQuestions;
                     $rootScope.positive_mark;
                     $rootScope.negative_mark;
+                    $rootScope.examFlag;
+                    $rootScope.used_sec;
                     $location.path(nextUrl);
                 } else {
                     var nextUrl = next.$$route.originalPath;
